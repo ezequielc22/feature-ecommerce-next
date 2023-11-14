@@ -1,20 +1,18 @@
 import React from 'react';
-import Head from 'next/head';
 import Card from '@/components/ui/Card';
 import { wordingsLayout } from '../../data/mocks/MockWordings';
 import aboutUsBackground from '../../public/images/aboutUsBackground.png';
 import Image from 'next/image';
+export const metadata = {
+  title: 'Nosotros',
+  description: 'Descubre más sobre nosotros y nuestra pasión por los mates. Conoce nuestra historia y compromiso con la calidad.',
+}
 
 const AboutUsPage = () => {
   const { AboutUs } = wordingsLayout;
 
   return (
     <div className="relative overflow-hidden">
-      <Head>
-        <title>Sobre Nosotros - Tu Tienda</title>
-        <meta name="description" content="Descubre más sobre nosotros y nuestra pasión por los mates. Conoce nuestra historia y compromiso con la calidad." />
-      </Head>
-
       <div className="fixed inset-0 z-[-1]">
         <Image
           src={aboutUsBackground}

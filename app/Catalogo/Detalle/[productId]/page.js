@@ -1,8 +1,12 @@
-"use client"
 import React from 'react';
 import contactBackground from '../../../../public/images/contactBackground.png'
 import Image from 'next/image';
 import { products } from '@/data/mocks/MockProducts';
+
+export const metadata = {
+  title: 'Detalle',
+  description: 'detalle de tu producto',
+}
 
 const productDetail = ({params}) => {
   const { productId } = params;

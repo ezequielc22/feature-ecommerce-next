@@ -1,4 +1,3 @@
-'use client'
 import React from 'react';
 import CardRow from '../../components/ui/CartRow/index';
 import Dropdown from '@/components/ui/Dropdown';
@@ -6,6 +5,11 @@ import SearchBox from '@/components/ui/Navbar/SearchBox';
 import { wordingsLayout } from '../../data/mocks/MockWordings';
 import { cartItems } from '../../data/mocks/MockProducts';
 import Link from 'next/link';
+
+export const metadata = {
+  title: 'Carrito',
+  description: 'Suma tus opciones al carrito',
+}
 
 const CartPage = () => {
   const { searchShipping, cartWordings } = wordingsLayout;

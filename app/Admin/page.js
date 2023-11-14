@@ -1,6 +1,9 @@
 import React from 'react';
 import { products } from '@/data/mocks/MockProducts';
 
+export const metadata = {
+    title: 'Admin',
+  }
 const AdminPanel = () => {
   return (
     <div className="container mx-auto p-4">

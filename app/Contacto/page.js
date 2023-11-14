@@ -3,6 +3,10 @@ import Card from '@/components/ui/Card';
 import { wordingsLayout } from '../../data/mocks/MockWordings'
 import contactBackground from '../../public/images/contactBackground.png'
 import Image from 'next/image';
+export const metadata = {
+  title: 'Contacto',
+  description: 'Siguenos en las redes!',
+}
 
 const ContactPage = () => {
     const {Contact} = wordingsLayout;
