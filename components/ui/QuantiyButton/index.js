@@ -1,16 +1,15 @@
-"use client"
-import React, { useState } from 'react';
+import React from 'react';
 
-const QuantityButton = () => {
-  const [count, setCount] = useState(1);
+const QuantityButton = (props) => {
+  const {ammountToAdd, setAmmountToAdd} = props;
 
   const increment = () => {
-    setCount((prevCount) => prevCount + 1);
+    setAmmountToAdd((prevCount) => prevCount + 1);
   };
 
   const decrement = () => {
-    if (count > 1) {
-      setCount((prevCount) => prevCount - 1);
+    if (ammountToAdd > 1) {
+      setAmmountToAdd((prevCount) => prevCount - 1);
     }
   };
 
@@ -19,11 +18,11 @@ const QuantityButton = () => {
       <button
         onClick={decrement}
         className="bg-contrast-100 text-contrast-700 w-8 h-8 rounded-md outline-contrast-700 cursor-pointer"
-        disabled={count === 1}
+        disabled={ammountToAdd === 1}
       >
         -
       </button>
-      <span className="mx-2">{count}</span>
+      <span className="mx-2">{ammountToAdd}</span>
       <button
         onClick={increment}
         className="bg-contrast-100 text-contrast-700 w-8 h-8 rounded-md outline-contrast-700 cursor-pointer"

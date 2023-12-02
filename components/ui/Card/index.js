@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Card = (props) => {
+  
     const { wordings } = props
   return (
     <div className="bg-gradient-to-t from-contrast-200 to-contrast-100 border-contrast-400 p-4 shadow-md rounded-md 

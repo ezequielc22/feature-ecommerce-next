@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import landingFrame from '../public/images/landing.png'
 import ProductsContainer from '@/components/ui/containers/ProductsContainer';
-import { popularProducts } from '@/data/mocks/MockProducts';
 import Card from '@/components/ui/Card';
 import { wordingsLayout } from '../data/mocks/MockWordings'
 
@@ -9,8 +8,11 @@ export const metadata = {
   title: 'Home',
   description: 'Eccommerce de mates!',
 }
-const Home = () => {
+const Home = async() => {
   const { cyberMonday } = wordingsLayout;
+  const popularProducts = await fetch(`http://localhost:3000/api/popularProducts`,
+  {cache: "no-store"}
+  ).then(r => r.json());
   return (
     <div className="relative overflow-hidden">
       <div className="fixed inset-0 z-[-1]">

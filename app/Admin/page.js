@@ -1,10 +1,12 @@
 import React from 'react';
-import { products } from '@/data/mocks/MockProducts';
 
 export const metadata = {
     title: 'Admin',
   }
-const AdminPanel = () => {
+const AdminPanel = async() => {
+  const products = await fetch('http://localhost:3000/api/products',
+  {cache: "force-cache"}
+  ).then(r => r.json());
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4 text-contrast-600">Panel de Administración</h1>
@@ -15,7 +17,6 @@ const AdminPanel = () => {
             <th className="py-2 px-4 border-b text-contrast-600">ID</th>
             <th className="py-2 px-4 border-b text-contrast-600">NOMBRE</th>
             <th className="py-2 px-4 border-b text-contrast-600">PRECIO</th>
-            <th className="py-2 px-4 border-b text-contrast-600">PRECIO_CON_DESCUENTO</th>
             <th className="py-2 px-4 border-b text-contrast-600">DESCRIPCION</th>
             <th className="py-2 px-4 border-b  text-contrast-400">ACCIONES</th>
           </tr>
@@ -26,7 +27,6 @@ const AdminPanel = () => {
               <td className="py-2 px-4 border-b text-contrast-400">{product.name}</td>
               <td className="py-2 px-4 border-b text-contrast-400">{product.price}</td>
               <td className="py-2 px-4 border-b text-contrast-400">{product.stock}</td>
-              <td className="py-2 px-4 border-b text-contrast-400">{product.slug}</td>
               <td className="py-2 px-4 border-b text-contrast-400">{product.description}</td>
               <td className="py-2 px-4 border-b space-y-3">
                 <button className="bg-contrast-400 text-white py-1 px-2 mr-2 rounded-md">Editar</button>
