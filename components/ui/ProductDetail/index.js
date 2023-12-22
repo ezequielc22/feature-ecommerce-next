@@ -8,7 +8,7 @@ const ProductDetail = (props) => {
     const { productId, productTobeDetail } = props
     const [ammountToAdd, setAmmountToAdd] = useState(0)
     const { addItem } = useContext(CartContext);
-    let itemPrice = productTobeDetail.discountedPrice || productTobeDetail.price;
+    let itemPrice = productTobeDetail.hasDiscount ? productTobeDetail.price*0.6 : productTobeDetail.price;
     let numberOfInstallments = (itemPrice / 3).toFixed(2);
     const addToCart = () => {
       addItem(productTobeDetail, ammountToAdd)

@@ -43,7 +43,7 @@ const CartProvider = ({ children }) => {
     let aux = 0
     return (
         cartItems && cartItems.reduce((accumulator, currentValue) => {          
-          return accumulator + ((currentValue.product.discountedPrice || currentValue.product.price)*currentValue.quantity)                         
+          return accumulator + ((currentValue.product.hasDiscount ? (currentValue.product.price*0.6).toFixed(2) : currentValue.product.price)*currentValue.quantity)                         
         },
         aux
       )    

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { useAuthContext } from '@/context/AuthContext';
 
 const menuItems = ['Catalogo','Carrito', 'Contacto', 'Nosotros', 'Admin'];
 
@@ -12,12 +13,11 @@ const MenuItem = ({ label }) => (
 );
 
 const Menu = () => {
+  const { user } = useAuthContext();
   return (
     <nav className="bg-contrast-100 p-4">
       <ul className="flex justify-center items-center space-x-2 sm:space-x-4">
-        {menuItems.map((item, index) => (
-          <MenuItem key={index} label={item} />
-        ))}
+        {menuItems.map((item, index) =>  (item === 'Admin' && user.logged) ? null : <MenuItem key={index} label={item} />)}
       </ul>
     </nav>
   );

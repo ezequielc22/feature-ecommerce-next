@@ -1,18 +1,32 @@
+"use client"
+import React, { useState } from "react";
 import AnnouncementNavbar from "./Announcements";
 import Menu from "./Menu";
-import SearchBox from "./SearchBox";
-import { wordingsLayout } from '../../../data/mocks/MockWordings'
 import Image from 'next/image';
 import Link from 'next/link';
+import AuthForm from "../AuthForm";
 
 const Navbar = () => {
-    const { searchProducts } = wordingsLayout;
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isLoggin, setIsLoggin] = useState(false);
+
+    const openRegisterModal = () => {
+        setIsLoggin(false);
+        setIsModalOpen(true);
+      };
+    
+      const openLogginModal = () => {
+        setIsLoggin(true);
+        setIsModalOpen(true);
+      };
+      const closeModal = () => {
+        setIsModalOpen(false);
+      };
 
     return (
         <>
             <AnnouncementNavbar/>
             <header className="h-48 bg-contrast-100 flex items-center justify-center gap-24 m-auto z-9">
-                <SearchBox textSearch={searchProducts}/>
                 <div className="flex items-center justify-center items-baseline">
                     <Image src="/icons/leaf.svg" alt="Logo de A MATE" width={40} height={40} className="mr-2" />
                     <Link href="/">
@@ -23,16 +37,19 @@ const Navbar = () => {
                     
                 </div>
                 <div className="hidden sm:flex gap-8 items-center justify-center ">
-                    <Link href="/crear-cuenta">
+                    { isLoggin ? null : <button onClick={openRegisterModal}>
                         <div className="text-black text-xs hover:text-contrast-400">CREAR CUENTA</div>
-                    </Link>
-                    |
-                    <Link href="/iniciar-sesion">
+                    </button>}
+                    <button onClick={openLogginModal}>
                         <div className="text-black text-xs hover:text-contrast-400">INICIAR SESIÓN</div>
-                    </Link>
+                    </button>
                 </div>
             </header>
             <Menu/>
+            {isModalOpen && (<AuthForm
+                isLoggin={isLoggin}
+                onClose={closeModal}
+            />)}
         </>
     )
 }

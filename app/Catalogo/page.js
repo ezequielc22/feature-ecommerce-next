@@ -10,7 +10,7 @@ export const metadata = {
 
 const CatalogPage = async() => {
   const products = await fetch('http://localhost:3000/api/products',
-    {cache: "force-cache"}
+  {cache: "no-store"}
     ).then(r => r.json());
   return (
     <div className="relative overflow-hidden">

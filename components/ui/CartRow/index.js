@@ -7,7 +7,7 @@ const CardRow = (props) => {
   const { item, removeItem, addItem } = props;
   const { product, quantity } = item
   const [ammountToAdd, setAmmountToAdd] = useState(quantity);
-  let itemPrice = product.discountedPrice || product.price;
+  let itemPrice = product.hasDiscount ? (product.price * 0.6).toFixed(2) : product.price ;
   let totalInRow = (itemPrice * ammountToAdd.toFixed(2));
 
   const handleRemove = () =>{

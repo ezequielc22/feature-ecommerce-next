@@ -8,26 +8,26 @@ import { CartContext } from "@/context/CartContext"
 const ProductCard = (props) => {
     const { product } = props;
     const [ammountToAdd, setAmmountToAdd] = useState(0)
-    let numberOfInstallments = product.discountedPrice? (product.discountedPrice / 3).toFixed(2) : (product.price / 3).toFixed(2);
+    let numberOfInstallments = product.hasDiscount ? ((product.price * 0.6) / 3).toFixed(2) : (product.price / 3).toFixed(2);
     const { addItem } = useContext(CartContext);
 
     const addToCart = () => {
-        addItem(product,ammountToAdd)
+        ammountToAdd > 0 ? addItem(product, ammountToAdd) : null;
     };
 
   return (
     <div className="bg-gradient-to-t from-contrast-200 to-contrast-100 border-contrast-400 p-4 shadow-md rounded-md 
     w-50 m-10 text-center">
         <div className='flex justify-center items-center p-2'>
-            <Image src={`/images/template${product.id}.png`} alt="image" width={200} height={600} className="mr-2 w-auto object-cover" />
+            <Image src={product.image} alt="image" width={200} height={600} className="mr-2 w-auto object-cover" />
         </div>
         <Link href={`/Catalogo/Detalle/${product.id}`}>
             <div className=' p-4 bg-contrast-50 rounded-md shadow-md text-center max-w-xs h-50 hover:bg-contrast-200'>
                 <h2 className="text-lg text-contrast-600 line-clamp-1 overflow-hidden">{product.name}</h2>
-                {product.discountedPrice ?
+                {product.hasDiscount ?
                     <div className="flex justify-center items-center gap-2">
                         <div className="text-contrast-300 line-through">$ {product.price}</div>
-                        <div className="text-contrast-500 text-xl font-semibold">$ {product.discountedPrice}</div>
+                        <div className="text-contrast-500 text-xl font-semibold">$ {(product.price * 0.6).toFixed(2)}</div>
                     </div>
                     :
                     <div className="flex justify-center items-center gap-2">
