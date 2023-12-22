@@ -2,13 +2,18 @@ import React from 'react';
 import contactBackground from '../../../../public/images/contactBackground.png'
 import Image from 'next/image';
 import ProductDetail from '@/components/ui/ProductDetail';
+import { getDoc,doc } from "firebase/firestore";
+import { db } from "@/firebase/config";
 
+const getProduct = async (productId) => {
+  const productRef = doc(db, 'products', productId);
+    const querySnapshot = await getDoc(productRef);
+  return querySnapshot.data();
+}
 
 const productDetailPage = async({params}) => {
   const { productId } = params;
-  const productTobeDetail = await fetch(`http://localhost:3000/api/products/${productId}`,
-  {cache: "no-store"}
-  ).then(r => r.json());
+  const productTobeDetail = await getProduct(productId);
   
     return (
       <div className="relative overflow-hidden">

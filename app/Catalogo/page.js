@@ -2,16 +2,21 @@ import React from 'react';
 import ProductsContainer from '@/components/ui/containers/ProductsContainer';
 import catalogBackground from '../../public/images/catalogBackground.png';
 import Image from 'next/image';
+import { collection, getDocs } from "firebase/firestore"
+import { db } from "@/firebase/config";
 
 export const metadata = {
   title: 'Catalogo',
   description: 'Listado de mates artesanales de alpaca, hierro, oro, plata. Explora nuestra amplia selección de mates. Encuentra el mate perfecto para ti en nuestra tienda en línea.',
 }
+const getProducts = async () => {
+  const productsRef = collection(db, "products");
+  const querySnapshot = await getDocs(productsRef)
+  return querySnapshot.docs.map(docSnapshot => docSnapshot.data())
+}
 
 const CatalogPage = async() => {
-  const products = await fetch('http://localhost:3000/api/products',
-  {cache: "no-store"}
-    ).then(r => r.json());
+  const products = await getProducts();
   return (
     <div className="relative overflow-hidden">
       <div className="fixed inset-0 z-[-1]">
